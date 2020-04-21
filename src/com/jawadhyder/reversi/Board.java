@@ -13,6 +13,7 @@ public class Board {
     private Integer humanScore = 2;
     private static final Integer TOTAL_BLOCKS = 64;
     private static final Integer MINIMAX_LOOK_AHEAD = 4;
+    private static final SearchStrategy SEARCH_STRATEGY = SearchStrategy.MINIMAX;
 
     public Board(State turn, State aiPlayer) {
         // Initialize
@@ -56,7 +57,7 @@ public class Board {
         }
 
         try {
-            LegalMove legalMove = getBestLegalMove(this, SearchStrategy.MINIMAX);
+            LegalMove legalMove = getBestLegalMove(this, SEARCH_STRATEGY);
             if (legalMove == null) {
                 Logger.info("No possible moves. Skipping turn.");
                 this.turn = GridNavigator.flip(this.turn);
